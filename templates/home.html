@@ -13,7 +13,7 @@
 
 <body>
  <div class="login">
-	<h1>Predict Insurance Bill</h1>
+	<h1>Predict Health Insurance Bill</h1>
 
      <!-- Form to enter new data for predictions  -->
     <form action="{{ url_for('predict')}}"method="POST">
@@ -24,7 +24,7 @@
         <input type="text" name="smoker" placeholder="Smoker" required="required" /><br>
         <input type="text" name="region" placeholder="Region" required="required" /><br>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict Bill</button>
     </form>
 
    <br>
