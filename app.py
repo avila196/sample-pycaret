@@ -6,7 +6,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load_model('deployment_20231111')
+model = load_model('deployment_20260410')
 cols = ['age', 'sex', 'bmi', 'children', 'smoker', 'region']
 
 @app.route('/')
@@ -32,8 +32,8 @@ def predict_api():
     data = request.get_json(force=True)
     data_unseen = pd.DataFrame([data])
     prediction = predict_model(model, data=data_unseen)
-    output = prediction.Label[0]
-    return jsonify(output)
+    prediction = int(prediction.loc[0, 'prediction_label'])
+    return jsonify({'output': prediction})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
