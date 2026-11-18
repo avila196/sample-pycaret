@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE: avila196/pycaret-project
+  DOCKER_IMAGE: docker.io/avila196/pycaret-project
   # Set these in your repo's Variables (Settings > Secrets and variables > Actions > Variables)
   GCP_REGION: ${{ vars.GCP_REGION }}           # e.g. us-central1
   CLOUD_RUN_SERVICE: ${{ vars.CLOUD_RUN_SERVICE }} # e.g. pycaret-app
@@ -58,10 +58,4 @@ jobs:
           image: ${{ steps.tag.outputs.tag }}
 
   sample-print:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run only on main
-        if: github.ref == 'refs/heads/main'
-        run: |
-          echo "A commit was pushed to main!"
+    needs: docker.ioas pushed to main!"
