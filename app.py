@@ -6,7 +6,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load_model('deployment_20260516')
+model = load_model('deployment_20261113')
 cols = ['age', 'sex', 'bmi', 'children', 'smoker', 'region']
 
 @app.route('/')
@@ -15,7 +15,7 @@ def home():
 
 @app.route('/health', methods=["GET"])
 def health():
-    return "HEALTH OK"
+    return "HEALTH OK"  # 200 OK
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -23,7 +23,6 @@ def predict():
     final = np.array(int_features)
     data_unseen = pd.DataFrame([final], columns = cols)
     prediction = predict_model(model, data=data_unseen, round = 0)
-    print(prediction)
     prediction = int(prediction.loc[0, 'prediction_label'])
     return render_template('home.html',pred='Expected Bill will be ${} anually'.format(prediction))
 
@@ -36,4 +35,4 @@ def predict_api():
     return jsonify({'output': prediction})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, port=5000)
