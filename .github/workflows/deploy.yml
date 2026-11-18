@@ -58,4 +58,10 @@ jobs:
           image: ${{ steps.tag.outputs.tag }}
 
   sample-print:
-    needs: docker.ioas pushed to main!"
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run only on main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "A commit was pushed to main!"
